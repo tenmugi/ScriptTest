@@ -15,16 +15,24 @@ public class Boss
 
     public void Defence(int damage)
     {
-        Debug.Log(damage + "のダメージを受けた");
-        this.hp -= damage;
+        if (hp >= 5)
+        {
+            this.hp -= damage;
+            Debug.Log(damage + "のダメージを受けた");
+        }
+
+        else
+        {
+            Debug.Log("負けた");
+        }
     }
 
-    public void Magic(int mp)
+    public void Magic()
     {
-        if (mp > 5)
+        if (mp >= 5)
         {
-            Debug.Log("魔法攻撃をした。残りMPは〇〇");
             this.mp -= 5;
+            Debug.Log("魔法攻撃をした。残りMPは" + this.mp);
         }
 
         else
@@ -43,15 +51,17 @@ public class Test : MonoBehaviour
 
         midboss.Attack();
         midboss.Defence(5);
-        midboss.Magic(53);
+        midboss.Magic();
 
-        for (int i = 0; i > 5; i++)
+        for (int i = 0; i < 10; i++)
         {
-            int mp = 53;
-            if(mp <5)
-            {
-                Debug.Log("MPが足りない");
-            }
+            midboss.Magic();
+        }
+
+
+        for(int i = 0; i < 20; i++)
+        {
+            midboss.Defence(5);
         }
 
         int[] array = new int[5];
